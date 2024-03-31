@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { Poppins } from "next/font/google";
 import "./globals.css";
+import { ClerkProvider } from "@clerk/nextjs";
 
 const poppins = Poppins({
   subsets: ["latin"],
@@ -10,7 +11,8 @@ const poppins = Poppins({
 
 export const metadata: Metadata = {
   title: "Event TCG",
-  description: "Event TCG est une site pour créer des événements autour de jeux de cartes",
+  description:
+    "Event TCG est une site pour créer des événements autour de jeux de cartes",
 };
 
 export default function RootLayout({
@@ -19,8 +21,10 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en">
-      <body className={poppins.variable}>{children}</body>
-    </html>
+    <ClerkProvider>
+      <html lang="en">
+        <body className={poppins.variable}>{children}</body>
+      </html>
+    </ClerkProvider>
   );
 }
